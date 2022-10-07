@@ -1,5 +1,5 @@
 {
-  "name": "@tmyswap/smart-order-router",
+  "name": "@tmychain/smart-order-router",
   "version": "2.10.0",
   "description": "Tmyswap Smart Order Router",
   "main": "build/main/index.js",
@@ -7,7 +7,7 @@
   "module": "build/module/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Tmyswap/smart-order-router.git"
+    "url": "https://github.com/tothemoney/smart-order-router.git"
   },
   "license": "GPL",
   "keywords": [],
