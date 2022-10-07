@@ -37,6 +37,7 @@ import {
   USDC_ETHEREUM_GNOSIS,
   USDC_MAINNET,
   USDC_ON,
+  USDC_TMY,
   USDT_MAINNET,
   V2PoolProvider,
   V2Route,
@@ -1587,8 +1588,9 @@ describe('quote for other networks', () => {
     [ChainId.CELO_ALFAJORES]: CUSD_CELO_ALFAJORES,
     [ChainId.GNOSIS]: WBTC_GNOSIS,
     [ChainId.MOONBEAM]: WBTC_MOONBEAM,
+    [ChainId.TMY_MAINNET]: USDC_TMY,
   };
-  const TEST_ERC20_2: { [chainId in ChainId]: Token } = {
+  const TEST_ERC20_2: { [chainId in ChainId]: Token } = {//chainId in ChainId
     [ChainId.MAINNET]: DAI_ON(1),
     [ChainId.ROPSTEN]: DAI_ON(ChainId.ROPSTEN),
     [ChainId.RINKEBY]: DAI_ON(ChainId.RINKEBY),
@@ -1604,6 +1606,7 @@ describe('quote for other networks', () => {
     [ChainId.CELO_ALFAJORES]: CEUR_CELO_ALFAJORES,
     [ChainId.GNOSIS]: USDC_ETHEREUM_GNOSIS,
     [ChainId.MOONBEAM]: WBTC_MOONBEAM,
+    [ChainId.TMY_MAINNET]: USDC_TMY,
   };
 
   // TODO: Find valid pools/tokens on optimistic kovan and polygon mumbai. We skip those tests for now.
@@ -1638,12 +1641,12 @@ describe('quote for other networks', () => {
           provider
         );
         const v3PoolProvider = new CachingV3PoolProvider(
-          ChainId.MAINNET,
-          new V3PoolProvider(ChainId.MAINNET, multicall2Provider),
+          ChainId.TMY_MAINNET,
+          new V3PoolProvider(ChainId.TMY_MAINNET, multicall2Provider),
           new NodeJSCache(new NodeCache({ stdTTL: 360, useClones: false }))
         );
         const v2PoolProvider = new V2PoolProvider(
-          ChainId.MAINNET,
+          ChainId.TMY_MAINNET,
           multicall2Provider
         );
 
@@ -1738,8 +1741,8 @@ describe('quote for other networks', () => {
                   ? parseAmount('10', tokenIn)
                   : parseAmount('10', tokenOut)
                 : tradeType == TradeType.EXACT_INPUT
-                ? parseAmount('100', tokenIn)
-                : parseAmount('100', tokenOut);
+                  ? parseAmount('100', tokenIn)
+                  : parseAmount('100', tokenOut);
 
             const swap = await alphaRouter.route(
               amount,
@@ -1935,8 +1938,8 @@ describe('quote for other networks', () => {
                     ? parseAmount('10', tokenIn)
                     : parseAmount('10', tokenOut)
                   : tradeType == TradeType.EXACT_INPUT
-                  ? parseAmount('100', tokenIn)
-                  : parseAmount('100', tokenOut);
+                    ? parseAmount('100', tokenIn)
+                    : parseAmount('100', tokenOut);
 
               const swap = await alphaRouter.route(
                 amount,

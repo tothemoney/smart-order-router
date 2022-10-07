@@ -8,6 +8,7 @@ import {
   WBTC_MAINNET,
   WMATIC_POLYGON,
   WMATIC_POLYGON_MUMBAI,
+  USDC_TMY,
 } from '../../providers/token-provider';
 import { ChainId, WRAPPED_NATIVE_CURRENCY } from '../../util/chains';
 
@@ -44,6 +45,10 @@ export const BASES_TO_CHECK_TRADES_AGAINST = (
     [ChainId.CELO_ALFAJORES]: [WRAPPED_NATIVE_CURRENCY[ChainId.CELO_ALFAJORES]],
     [ChainId.GNOSIS]: [WRAPPED_NATIVE_CURRENCY[ChainId.GNOSIS]],
     [ChainId.MOONBEAM]: [WRAPPED_NATIVE_CURRENCY[ChainId.MOONBEAM]],
+    [ChainId.TMY_MAINNET]: [
+      WRAPPED_NATIVE_CURRENCY[ChainId.TMY_MAINNET]!,
+      USDC_TMY,
+    ],
   };
 };
 

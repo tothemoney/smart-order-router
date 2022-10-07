@@ -16,6 +16,7 @@ export enum ChainId {
   CELO_ALFAJORES = 44787,
   GNOSIS = 100,
   MOONBEAM = 1284,
+  TMY_MAINNET = 8768,
 }
 
 // WIP: Gnosis, Moonbeam
@@ -33,6 +34,7 @@ export const SUPPORTED_CHAINS: ChainId[] = [
   ChainId.GÖRLI,
   ChainId.CELO_ALFAJORES,
   ChainId.CELO,
+  ChainId.TMY_MAINNET,
   // Gnosis and Moonbeam don't yet have contracts deployed yet
 ];
 
@@ -97,6 +99,8 @@ export const ID_TO_CHAIN_ID = (id: number): ChainId => {
       return ChainId.GNOSIS;
     case 1284:
       return ChainId.MOONBEAM;
+    case 8768:
+      return ChainId.TMY_MAINNET;
     default:
       throw new Error(`Unknown chain id: ${id}`);
   }
@@ -118,6 +122,7 @@ export enum ChainName {
   CELO_ALFAJORES = 'celo-alfajores',
   GNOSIS = 'gnosis-mainnet',
   MOONBEAM = 'moonbeam-mainnet',
+  TMY_MAINNET = 'tmy_mainnet',
 }
 
 export enum NativeCurrencyName {
@@ -127,6 +132,7 @@ export enum NativeCurrencyName {
   CELO = 'CELO',
   GNOSIS = 'XDAI',
   MOONBEAM = 'GLMR',
+  TMY_MAINNET = 'TMY',
 }
 export const NATIVE_NAMES_BY_ID: { [chainId: number]: string[] } = {
   [ChainId.MAINNET]: [
@@ -183,6 +189,11 @@ export const NATIVE_NAMES_BY_ID: { [chainId: number]: string[] } = {
   [ChainId.CELO_ALFAJORES]: ['CELO'],
   [ChainId.GNOSIS]: ['XDAI'],
   [ChainId.MOONBEAM]: ['GLMR'],
+  [ChainId.TMY_MAINNET]: [
+    'TMY',
+    'TMY',
+    '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
+  ],
 };
 
 export const NATIVE_CURRENCY: { [chainId: number]: NativeCurrencyName } = {
@@ -201,6 +212,7 @@ export const NATIVE_CURRENCY: { [chainId: number]: NativeCurrencyName } = {
   [ChainId.CELO_ALFAJORES]: NativeCurrencyName.CELO,
   [ChainId.GNOSIS]: NativeCurrencyName.GNOSIS,
   [ChainId.MOONBEAM]: NativeCurrencyName.MOONBEAM,
+  [ChainId.TMY_MAINNET]: NativeCurrencyName.TMY_MAINNET,
 };
 
 export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
@@ -235,6 +247,8 @@ export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
       return ChainName.GNOSIS;
     case 1284:
       return ChainName.MOONBEAM;
+    case 8768:
+      return ChainName.TMY_MAINNET;
     default:
       throw new Error(`Unknown chain id: ${id}`);
   }
@@ -272,6 +286,8 @@ export const ID_TO_PROVIDER = (id: ChainId): string => {
       return process.env.JSON_RPC_PROVIDER_CELO!;
     case ChainId.CELO_ALFAJORES:
       return process.env.JSON_RPC_PROVIDER_CELO_ALFAJORES!;
+    case ChainId.TMY_MAINNET:
+      return process.env.JSON_RPC_PROVIDER_TMY!;
     default:
       throw new Error(`Chain id: ${id} not supported`);
   }
@@ -385,6 +401,13 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId in ChainId]: Token } = {
     'WGLMR',
     'Wrapped GLMR'
   ),
+  [ChainId.TMY_MAINNET]: new Token(
+    ChainId.TMY_MAINNET,
+    '0x2cAFe4F36F6EAb174830d3d988E6F70433CCCefB',
+    18,
+    'WTMY',
+    'Wrapped TMY'
+  ),
 };
 
 function isMatic(
@@ -467,6 +490,10 @@ function isMoonbeam(chainId: number): chainId is ChainId.MOONBEAM {
   return chainId === ChainId.MOONBEAM;
 }
 
+function isTMY(chainId: number): chainId is ChainId.TMY_MAINNET {
+  return chainId === ChainId.TMY_MAINNET;
+}
+
 class MoonbeamNativeCurrency extends NativeCurrency {
   equals(other: Currency): boolean {
     return other.isNative && other.chainId === this.chainId;
@@ -484,6 +511,26 @@ class MoonbeamNativeCurrency extends NativeCurrency {
   public constructor(chainId: number) {
     if (!isMoonbeam(chainId)) throw new Error('Not moonbeam');
     super(chainId, 18, 'GLMR', 'Glimmer');
+  }
+}
+
+class TMYNativeCurrency extends NativeCurrency {
+  equals(other: Currency): boolean {
+    return other.isNative && other.chainId === this.chainId;
+  }
+
+  get wrapped(): Token {
+    if (!isTMY(this.chainId)) throw new Error('Not TMY');
+    const nativeCurrency = WRAPPED_NATIVE_CURRENCY[this.chainId];
+    if (nativeCurrency) {
+      return nativeCurrency;
+    }
+    throw new Error(`Does not support this chain ${this.chainId}`);
+  }
+
+  public constructor(chainId: number) {
+    if (!isTMY(chainId)) throw new Error('Not TMY');
+    super(chainId, 18, 'TMY', 'ToTheMoney');
   }
 }
 
@@ -517,6 +564,8 @@ export function nativeOnChain(chainId: number): NativeCurrency {
     cachedNativeCurrency[chainId] = new GnosisNativeCurrency(chainId);
   else if (isMoonbeam(chainId))
     cachedNativeCurrency[chainId] = new MoonbeamNativeCurrency(chainId);
+  else if (isTMY(chainId))
+    cachedNativeCurrency[chainId] = new TMYNativeCurrency(chainId);
   else cachedNativeCurrency[chainId] = ExtendedEther.onChain(chainId);
 
   return cachedNativeCurrency[chainId]!;
