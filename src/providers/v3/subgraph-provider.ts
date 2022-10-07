@@ -60,8 +60,7 @@ const SUBGRAPH_URL_BY_CHAIN: { [chainId in ChainId]?: string } = {
   [ChainId.GÖRLI]:
     'https://api.thegraph.com/subgraphs/name/ianlapham/uniswap-v3-gorli',
   [ChainId.TMY_MAINNET]:
-    'http://node6.tmychain.org:8000/subgraphs/name/ianlapham/uniswap-v3-gorli'
-  //'https://node6.tmychain.org/graph/rpc',
+    'https://node6.tmychain.org/graph/rpc',
 };
 
 const PAGE_SIZE = 1000; // 1k is max possible query size from subgraph.
