@@ -25,6 +25,7 @@ import {
   USDC_OPTIMISTIC_KOVAN,
   USDC_POLYGON,
   USDC_ROPSTEN,
+  USDC_TMY,
   USDT_ARBITRUM,
   USDT_ARBITRUM_RINKEBY,
   USDT_GÖRLI,
@@ -71,6 +72,7 @@ export const usdGasTokensByChain: { [chainId in ChainId]?: Token[] } = {
   [ChainId.CELO_ALFAJORES]: [CUSD_CELO_ALFAJORES],
   [ChainId.GNOSIS]: [USDC_ETHEREUM_GNOSIS],
   [ChainId.MOONBEAM]: [USDC_MOONBEAM],
+  [ChainId.TMY_MAINNET]: [USDC_TMY],
 };
 
 export type L1ToL2GasCosts = {
@@ -86,8 +88,8 @@ export type BuildOnChainGasModelFactoryType = {
   token: Token;
   v2poolProvider: IV2PoolProvider;
   l2GasDataProvider?:
-    | IL2GasDataProvider<OptimismGasData>
-    | IL2GasDataProvider<ArbitrumGasData>;
+  | IL2GasDataProvider<OptimismGasData>
+  | IL2GasDataProvider<ArbitrumGasData>;
 };
 
 export type BuildV2GasModelFactoryType = {

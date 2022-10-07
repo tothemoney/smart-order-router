@@ -60,6 +60,7 @@ import {
   WMATIC_POLYGON,
   WMATIC_POLYGON_MUMBAI,
   WXDAI_GNOSIS,
+  USDC_TMY,
 } from '../token-provider';
 
 import { IV3PoolProvider } from './pool-provider';
@@ -156,6 +157,11 @@ const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     USDC_MOONBEAM,
     WBTC_MOONBEAM,
   ],
+  [ChainId.TMY_MAINNET]: [
+    WRAPPED_NATIVE_CURRENCY[ChainId.TMY_MAINNET],
+    USDC_TMY,
+    //WBTC_TMY,
+  ],
 };
 
 /**
@@ -173,7 +179,7 @@ export class StaticV3SubgraphProvider implements IV3SubgraphProvider {
   constructor(
     private chainId: ChainId,
     private poolProvider: IV3PoolProvider
-  ) {}
+  ) { }
 
   public async getPools(
     tokenIn?: Token,

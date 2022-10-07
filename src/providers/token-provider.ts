@@ -510,11 +510,28 @@ export const WBTC_MOONBEAM = new Token(
   'Wrapped BTC bridged using Multichain'
 );
 
+// TMY Tokens
+export const USDC_TMY = new Token(
+  ChainId.TMY_MAINNET,
+  '0x9AA8D88A5F02DA23DbCb0722FB349b04882262e6',
+  6,
+  'USDC',
+  'USDC_TMY'
+);
+
+/*export const WBTC_TMY = new Token(
+  ChainId.TMY_MAINNET,
+  '',
+  8,
+  'WBTC',
+  'Wrapped BTC bridged using Multichain'
+);*/
+
 export class TokenProvider implements ITokenProvider {
   constructor(
     private chainId: ChainId,
     protected multicall2Provider: IMulticallProvider
-  ) {}
+  ) { }
 
   public async getTokens(
     _addresses: string[],
@@ -584,10 +601,8 @@ export class TokenProvider implements ITokenProvider {
       }
 
       log.info(
-        `Got token symbol and decimals for ${
-          Object.values(addressToToken).length
-        } out of ${addresses.length} tokens on-chain ${
-          providerConfig ? `as of: ${providerConfig?.blockNumber}` : ''
+        `Got token symbol and decimals for ${Object.values(addressToToken).length
+        } out of ${addresses.length} tokens on-chain ${providerConfig ? `as of: ${providerConfig?.blockNumber}` : ''
         }`
       );
     }
