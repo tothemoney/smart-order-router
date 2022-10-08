@@ -1,6 +1,6 @@
 {
   "name": "@tmychain/smart-order-router",
-  "version": "2.11.0",
+  "version": "2.11.1",
   "description": "Tmyswap Smart Order Router",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
