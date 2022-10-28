@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.12.0 (2022-10-28)
+
+
+### Features
+
+* add network context to logs ([#163](https://github.com/tothemoney/smart-order-router/issues/163)) ([d686a14](https://github.com/tothemoney/smart-order-router/commit/d686a14a0d0cf248caf29bc1c0384c4d84719475))
+* add stale config ([#116](https://github.com/tothemoney/smart-order-router/issues/116)) ([3c4a32f](https://github.com/tothemoney/smart-order-router/commit/3c4a32fc671ee1b57c48f494090caede2d5f776f))
+* export TokenValidatorProvider ([#110](https://github.com/tothemoney/smart-order-router/issues/110)) ([53c6bef](https://github.com/tothemoney/smart-order-router/commit/53c6befc4a78f814a80d510896e4c15da527151c))
+
+
+### Bug Fixes
+
+* add export ([609ae40](https://github.com/tothemoney/smart-order-router/commit/609ae40c4bb1af6a6cb682258f19171d427bdbf9))
+* move prettier-plugin-organize-imports and sinon to dev dependencies ([#18](https://github.com/tothemoney/smart-order-router/issues/18)) ([c9514cc](https://github.com/tothemoney/smart-order-router/commit/c9514cc8ba87b62aedf1402cfd8188fc59d4a363))
+* retain ethers as dep for factories ([#84](https://github.com/tothemoney/smart-order-router/issues/84)) ([a24b0b2](https://github.com/tothemoney/smart-order-router/commit/a24b0b2d6116fef9a7796cb5e090e8d0f2c956b0))
+* split tsconfig to reduce package size ([#85](https://github.com/tothemoney/smart-order-router/issues/85)) ([3ebf637](https://github.com/tothemoney/smart-order-router/commit/3ebf637290a8c3f3e3fef6f2c5f5a488bbc5825c))
+* tree-shake mnemonist ([#83](https://github.com/tothemoney/smart-order-router/issues/83)) ([dc5ce16](https://github.com/tothemoney/smart-order-router/commit/dc5ce16e560ecda5d81a6642ae963add21825d73))
+* update celo contract addresses ([#109](https://github.com/tothemoney/smart-order-router/issues/109)) ([121e9ba](https://github.com/tothemoney/smart-order-router/commit/121e9ba5fd37afaaeea65d0e92e9fdd599d7cbb2))
+
 ### [2.11.1](https://github.com/tothemoney/smart-order-router/compare/v2.11.0...v2.11.1) (2022-10-08)
 
 ## 2.11.0 (2022-10-08)
