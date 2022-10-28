@@ -403,7 +403,7 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId in ChainId]: Token } = {
   ),
   [ChainId.TMY_MAINNET]: new Token(
     ChainId.TMY_MAINNET,
-    '0x2cAFe4F36F6EAb174830d3d988E6F70433CCCefB',
+    '0xb5bd9471ee91Ade13AC33B10aeF25Bd8e49131A9',
     18,
     'WTMY',
     'Wrapped TMY'
