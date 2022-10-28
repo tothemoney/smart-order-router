@@ -513,7 +513,7 @@ export const WBTC_MOONBEAM = new Token(
 // TMY Tokens
 export const USDC_TMY = new Token(
   ChainId.TMY_MAINNET,
-  '0x9AA8D88A5F02DA23DbCb0722FB349b04882262e6',
+  '0x7045d9FF8C6a73889859f1e079B30DDaEcc9F96D',
   6,
   'USDC',
   'USDC_TMY'
