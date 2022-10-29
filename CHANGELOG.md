@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.12.6](https://github.com/tothemoney/smart-order-router/compare/v2.11.3...v2.12.6) (2022-10-29)
+
 ### [2.11.3](https://github.com/tothemoney/smart-order-router/compare/v2.11.2...v2.11.3) (2022-10-28)
 
 ### [2.11.2](https://github.com/tothemoney/smart-order-router/compare/v2.11.1...v2.11.2) (2022-10-28)
