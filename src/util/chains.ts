@@ -21,7 +21,7 @@ export enum ChainId {
 
 // WIP: Gnosis, Moonbeam
 export const SUPPORTED_CHAINS: ChainId[] = [
-  ChainId.MAINNET,
+  /*ChainId.MAINNET,
   ChainId.RINKEBY,
   ChainId.ROPSTEN,
   ChainId.KOVAN,
@@ -33,7 +33,7 @@ export const SUPPORTED_CHAINS: ChainId[] = [
   ChainId.POLYGON_MUMBAI,
   ChainId.GÖRLI,
   ChainId.CELO_ALFAJORES,
-  ChainId.CELO,
+  ChainId.CELO,*/
   ChainId.TMY_MAINNET,
   // Gnosis and Moonbeam don't yet have contracts deployed yet
 ];

@@ -531,7 +531,7 @@ export class TokenProvider implements ITokenProvider {
   constructor(
     private chainId: ChainId,
     protected multicall2Provider: IMulticallProvider
-  ) { }
+  ) {}
 
   public async getTokens(
     _addresses: string[],
@@ -601,8 +601,10 @@ export class TokenProvider implements ITokenProvider {
       }
 
       log.info(
-        `Got token symbol and decimals for ${Object.values(addressToToken).length
-        } out of ${addresses.length} tokens on-chain ${providerConfig ? `as of: ${providerConfig?.blockNumber}` : ''
+        `Got token symbol and decimals for ${
+          Object.values(addressToToken).length
+        } out of ${addresses.length} tokens on-chain ${
+          providerConfig ? `as of: ${providerConfig?.blockNumber}` : ''
         }`
       );
     }

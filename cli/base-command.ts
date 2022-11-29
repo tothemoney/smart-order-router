@@ -91,7 +91,7 @@ export abstract class BaseCommand extends Command {
     chainId: flags.integer({
       char: 'c',
       required: false,
-      default: ChainId.MAINNET,
+      default: ChainId.TMY_MAINNET,
       options: CHAIN_IDS_LIST,
     }),
     tokenListURI: flags.string({
@@ -118,8 +118,8 @@ export abstract class BaseCommand extends Command {
     return this._log
       ? this._log
       : bunyan.createLogger({
-          name: 'Default Logger',
-        });
+        name: 'Default Logger',
+      });
   }
 
   get router() {
@@ -189,19 +189,19 @@ export abstract class BaseCommand extends Command {
       streams: debugJSON
         ? undefined
         : [
-            {
-              level: logLevel,
-              type: 'stream',
-              stream: bunyanDebugStream({
-                basepath: __dirname,
-                forceColor: false,
-                showDate: false,
-                showPid: false,
-                showLoggerName: false,
-                showLevel: !!debug,
-              }),
-            },
-          ],
+          {
+            level: logLevel,
+            type: 'stream',
+            stream: bunyanDebugStream({
+              basepath: __dirname,
+              forceColor: false,
+              showDate: false,
+              showPid: false,
+              showLoggerName: false,
+              showLevel: !!debug,
+            }),
+          },
+        ],
     });
 
     if (debug || debugJSON) {
@@ -211,9 +211,9 @@ export abstract class BaseCommand extends Command {
     const chainId = ID_TO_CHAIN_ID(chainIdNumb);
     const chainProvider = ID_TO_PROVIDER(chainId);
 
-    const metricLogger: MetricLogger = new MetricLogger({ 
-      chainId: chainIdNumb, 
-      networkName: ID_TO_NETWORK_NAME(chainId) 
+    const metricLogger: MetricLogger = new MetricLogger({
+      chainId: chainIdNumb,
+      networkName: ID_TO_NETWORK_NAME(chainId)
     });
     setGlobalMetric(metricLogger);
 

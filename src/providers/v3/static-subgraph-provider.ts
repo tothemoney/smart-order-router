@@ -39,6 +39,7 @@ import {
   USDC_POLYGON,
   USDC_RINKEBY,
   USDC_ROPSTEN,
+  USDC_TMY,
   USDT_ARBITRUM,
   USDT_ARBITRUM_RINKEBY,
   USDT_GÖRLI,
@@ -60,7 +61,6 @@ import {
   WMATIC_POLYGON,
   WMATIC_POLYGON_MUMBAI,
   WXDAI_GNOSIS,
-  USDC_TMY,
 } from '../token-provider';
 
 import { IV3PoolProvider } from './pool-provider';
@@ -179,7 +179,7 @@ export class StaticV3SubgraphProvider implements IV3SubgraphProvider {
   constructor(
     private chainId: ChainId,
     private poolProvider: IV3PoolProvider
-  ) { }
+  ) {}
 
   public async getPools(
     tokenIn?: Token,

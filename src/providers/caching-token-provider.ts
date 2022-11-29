@@ -32,6 +32,7 @@ import {
   USDC_OPTIMISM,
   USDC_OPTIMISTIC_KOVAN,
   USDC_POLYGON,
+  USDC_TMY,
   USDT_ARBITRUM,
   USDT_ARBITRUM_RINKEBY,
   USDT_MAINNET,
@@ -44,7 +45,6 @@ import {
   WBTC_OPTIMISTIC_KOVAN,
   WMATIC_POLYGON,
   WMATIC_POLYGON_MUMBAI,
-  USDC_TMY,
 } from './token-provider';
 
 // These tokens will added to the Token cache on initialization.
@@ -153,7 +153,7 @@ export class CachingTokenProviderWithFallback implements ITokenProvider {
     private tokenCache: ICache<Token>,
     protected primaryTokenProvider: ITokenProvider,
     protected fallbackTokenProvider?: ITokenProvider
-  ) { }
+  ) {}
 
   public async getTokens(_addresses: string[]): Promise<TokenAccessor> {
     const seedTokens = CACHE_SEED_TOKENS[this.chainId];
@@ -192,10 +192,12 @@ export class CachingTokenProviderWithFallback implements ITokenProvider {
 
     log.info(
       { addressesToFindInPrimary },
-      `Found ${addresses.length - addressesToFindInPrimary.length} out of ${addresses.length
-      } tokens in local cache. ${addressesToFindInPrimary.length > 0
-        ? `Checking primary token provider for ${addressesToFindInPrimary.length} tokens`
-        : ``
+      `Found ${addresses.length - addressesToFindInPrimary.length} out of ${
+        addresses.length
+      } tokens in local cache. ${
+        addressesToFindInPrimary.length > 0
+          ? `Checking primary token provider for ${addressesToFindInPrimary.length} tokens`
+          : ``
       }
       `
     );
@@ -222,10 +224,12 @@ export class CachingTokenProviderWithFallback implements ITokenProvider {
 
       log.info(
         { addressesToFindInSecondary },
-        `Found ${addressesToFindInPrimary.length - addressesToFindInSecondary.length
-        } tokens in primary. ${this.fallbackTokenProvider
-          ? `Checking secondary token provider for ${addressesToFindInSecondary.length} tokens`
-          : `No fallback token provider specified. About to return.`
+        `Found ${
+          addressesToFindInPrimary.length - addressesToFindInSecondary.length
+        } tokens in primary. ${
+          this.fallbackTokenProvider
+            ? `Checking secondary token provider for ${addressesToFindInSecondary.length} tokens`
+            : `No fallback token provider specified. About to return.`
         }`
       );
     }

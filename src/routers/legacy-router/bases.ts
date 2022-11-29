@@ -4,11 +4,11 @@ import {
   DAI_MAINNET,
   ITokenProvider,
   USDC_MAINNET,
+  USDC_TMY,
   USDT_MAINNET,
   WBTC_MAINNET,
   WMATIC_POLYGON,
   WMATIC_POLYGON_MUMBAI,
-  USDC_TMY,
 } from '../../providers/token-provider';
 import { ChainId, WRAPPED_NATIVE_CURRENCY } from '../../util/chains';
 
